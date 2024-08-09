@@ -1,0 +1,111 @@
+// Colors
+$primary-color: #2d2d2d;
+$secondary-color: #6c757d;
+$dark-color: #343a40;
+$white-color: #ffffff;
+
+// Utility Classes for Colors
+.text-primary {
+  color: $primary-color;
+}
+.text-secondary {
+  color: $secondary-color;
+}
+.text-dark {
+  color: $dark-color;
+}
+.text-white {
+  color: $white-color;
+}
+
+.bg-primary {
+  background-color: $primary-color;
+}
+.bg-secondary {
+  background-color: $secondary-color;
+}
+.bg-dark {
+  background-color: $dark-color;
+}
+.bg-white {
+  background-color: $white-color;
+}
+
+//  ============================================
+
+// Font Sizes
+$font-size-12: 12px;
+$font-size-14: 14px;
+$font-size-16: 16px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+$font-size-28: 28px;
+$font-size-36: 36px;
+$font-size-48: 48px;
+$font-size-56: 56px;
+
+// Utility Classes for Font Sizes
+.fs-12 {
+  font-size: $font-size-12;
+}
+.fs-14 {
+  font-size: $font-size-14;
+}
+.fs-16 {
+  font-size: $font-size-16;
+}
+.fs-20 {
+  font-size: $font-size-20;
+}
+.fs-24 {
+  font-size: $font-size-24;
+}
+.fs-28 {
+  font-size: $font-size-28;
+}
+.fs-36 {
+  font-size: $font-size-36;
+}
+.fs-48 {
+  font-size: $font-size-48;
+}
+.fs-56 {
+  font-size: $font-size-56;
+}
+
+//  ============================================
+
+// Flex Column Gaps
+$col-gap-4: 4px;
+$col-gap-8: 8px;
+$col-gap-12: 12px;
+$col-gap-16: 16px;
+$col-gap-24: 24px;
+$col-gap-48: 48px;
+
+// Flex Column Gaps
+.gap-4 {
+  gap: $col-gap-4;
+}
+
+.gap-8 {
+  gap: $col-gap-8;
+}
+
+.gap-12 {
+  gap: $col-gap-12;
+}
+
+.gap-16 {
+  gap: $col-gap-16;
+}
+
+.gap-24 {
+  gap: $col-gap-24;
+}
+
+.gap-48 {
+  gap: $col-gap-48;
+}
+
+//  ============================================
