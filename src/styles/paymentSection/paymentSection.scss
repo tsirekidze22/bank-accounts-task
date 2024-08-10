@@ -1,0 +1,12 @@
+.tabs {
+  button {
+    transition: 0.2s linear;
+
+    &:hover {
+      color: rgb(0, 140, 255);
+    }
+  }
+  .active {
+    color: rgb(0, 140, 255);
+  }
+}

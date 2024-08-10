@@ -13,17 +13,15 @@ const Header = () => {
               <li className="list-item">
                 <Link to="/">Home</Link>
               </li>
-              <li className="list-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="list-item">
-                <Link to="/">Home</Link>
-              </li>
             </ul>
           </nav>
         </div>
-        <div className="d-flex gap-16">
-          {/*<img src=""/>*/}
+        <div className="d-flex align-items-center gap-8">
+          <img
+            src="/assets/icons/profile.svg"
+            alt="profile"
+            className="profile-icon"
+          />
           <h4>John Doe</h4>
         </div>
       </div>

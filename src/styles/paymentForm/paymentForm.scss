@@ -1,51 +1,54 @@
 .payment-form {
-  background-color: #f8f9fa; // Light gray background
-  padding: 2rem; // Padding for the form
-  border-radius: 0.5rem; // Rounded corners
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid red;
+  width: 32%;
 
   h3 {
-    color: #343a40; // Dark color for the heading
+    color: #343a40;
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
 
   .form-group {
-    width: 100%; // Full width for form groups
+    width: 100%;
     margin-bottom: 1rem;
 
     label {
-      color: #495057; // Dark gray color for labels
+      color: #495057;
       font-weight: 500;
       margin-bottom: 0.5rem;
       display: block;
     }
 
     .form-control {
-      padding: 0.75rem 1rem; // Padding inside the input fields
+      padding: 0.75rem 1rem;
       font-size: 1rem;
-      border: 1px solid #ced4da; // Border color for inputs
-      border-radius: 0.25rem; // Rounded corners for inputs
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
       transition: border-color 0.2s;
+      width: 100%;
 
       &:focus {
-        border-color: #80bdff; // Border color on focus
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); // Box shadow on focus
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
       }
     }
   }
 
   .btn {
-    padding: 0.75rem 1.5rem; // Padding for the button
+    padding: 0.75rem 1.5rem;
     font-size: 1.1rem;
-    background-color: #007bff; // Primary button color
+    background-color: #007bff;
     border: none;
     color: #fff;
     border-radius: 0.25rem;
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #0056b3; // Darker shade on hover
+      background-color: #0056b3;
     }
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface Account {
   name: string;
@@ -11,6 +11,8 @@ interface Account {
 }
 
 const AccountItem = ({ account }: { account: Account }) => {
+  const [message, setMessage] = useState("");
+
   const formatBalance = (balance: number) => {
     return balance.toLocaleString("en-US", {
       minimumFractionDigits: 2,
@@ -20,7 +22,11 @@ const AccountItem = ({ account }: { account: Account }) => {
 
   const handleCopyIban = () => {
     navigator.clipboard.writeText(account.iban);
-    alert("IBAN copied to clipboard!");
+    setMessage("IBAN copied to clipboard!");
+
+    setTimeout(() => {
+      setMessage(""); 
+    }, 2000);
   };
 
   return (
@@ -34,16 +40,13 @@ const AccountItem = ({ account }: { account: Account }) => {
       <h4 className="fs-14 mb-3">IBAN</h4>
       <div className="iban-section d-flex align-items-center justify-content-between">
         <h3>{account.iban}</h3>
-        <button
-          type="button"
-          className="btn btn-outline-secondary btn-sm"
-          onClick={handleCopyIban}
-        >
+        <button type="button" className="copy-btn" onClick={handleCopyIban}>
           <img
             src="/assets/icons/copy-icon.svg"
             alt="copy"
             className="copy-icon"
           />
+          {message !== "" && <p className="copy-message">{message}</p>}
         </button>
       </div>
       <h4 className="fs-14 mt-4 mb-3">Account Owner</h4>

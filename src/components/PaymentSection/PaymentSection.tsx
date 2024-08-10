@@ -23,8 +23,8 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
   };
 
   return (
-    <section>
-      <div className="container mt-5 mb-3 tabs d-flex">
+    <section className="container mb-5 pb-5">
+      <div className="mt-5 mb-3 tabs gap-16 d-flex">
         {TransactionTabs.map((tab) => (
           <button
             key={tab.key}
@@ -35,11 +35,23 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
           </button>
         ))}
       </div>
-      <PaymentForm
-        accounts={accounts}
-        updateBalance={updateBalance}
-        type={activeTab}
-      />
+      <div className="d-flex gap-16">
+        <PaymentForm
+          accounts={accounts}
+          updateBalance={updateBalance}
+          type="withdraw"
+        />
+        <PaymentForm
+          accounts={accounts}
+          updateBalance={updateBalance}
+          type="deposit"
+        />
+        <PaymentForm
+          accounts={accounts}
+          updateBalance={updateBalance}
+          type="transfer"
+        />
+      </div>
     </section>
   );
 };
