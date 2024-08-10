@@ -11,19 +11,18 @@ interface Account {
 }
 
 const AccountItem = ({ account }: { account: Account }) => {
-  const formatBalance = (balance: number): string => {
-    return new Intl.NumberFormat("en-US", {
-      style: "decimal",
+  const formatBalance = (balance: number) => {
+    return balance.toLocaleString("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(balance);
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(account.iban).then(() => {
-      alert("IBAN copied to clipboard!");
     });
   };
+
+  const handleCopyIban = () => {
+    navigator.clipboard.writeText(account.iban);
+    alert("IBAN copied to clipboard!");
+  };
+
   return (
     <div className="account-item p-4">
       <h3 className="fs-20">{account.name}</h3>
@@ -38,7 +37,7 @@ const AccountItem = ({ account }: { account: Account }) => {
         <button
           type="button"
           className="btn btn-outline-secondary btn-sm"
-          onClick={copyToClipboard}
+          onClick={handleCopyIban}
         >
           <img
             src="/assets/icons/copy-icon.svg"
