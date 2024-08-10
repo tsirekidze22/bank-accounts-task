@@ -2,7 +2,7 @@ export const AccountsArr = [
   {
     owner: "John Doe",
     name: "Personal Mastercard",
-    iban: "DE89370400440532013000",
+    iban: "GE89370400440532013000",
     balance: 1500.0,
     currency: "EUR",
     expires: "12/24",
@@ -11,7 +11,7 @@ export const AccountsArr = [
   {
     owner: "John Doe",
     name: "Savings Account",
-    iban: "DE89370400440532013002",
+    iban: "GE89370400440532013002",
     balance: 3000.0,
     currency: "EUR",
     expires: "01/26",
@@ -20,7 +20,7 @@ export const AccountsArr = [
   {
     owner: "Jane Smith",
     name: "Business Mastercard",
-    iban: "DE89370400440532013001",
+    iban: "GE89370400440532013001",
     balance: 2500.0,
     currency: "EUR",
     expires: "11/25",
@@ -28,9 +28,8 @@ export const AccountsArr = [
   },
 ];
 
-
 export const TransactionTabs = [
-    { key: "withdraw", label: "Withdraw" },
-    { key: "deposit", label: "Deposit" },
-    { key: "transfer", label: "Transfer" },
-  ];
+  { key: "withdraw", label: "Withdraw" },
+  { key: "deposit", label: "Deposit" },
+  { key: "transfer", label: "Transfer" },
+];

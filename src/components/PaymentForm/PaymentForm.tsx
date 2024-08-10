@@ -3,18 +3,30 @@ import React, { useState } from "react";
 interface Account {
   iban: string;
   balance: number;
+  name: string;
 }
-
 interface PaymentFormProps {
   type: "withdraw" | "deposit" | "transfer";
   accounts?: Account[];
   updateBalance?: (iban: string, newBalance: number) => void;
+  onTransaction?: (transaction: Transaction) => void;
+}
+
+interface Transaction {
+  date: Date;
+  amount: number;
+  balance: number;
+  iban: string;
+  owner: string;
+  name: string;
+  transaction_type: string;
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({
   type = "withdraw",
   accounts = [],
   updateBalance = () => {},
+  onTransaction = () => {},
 }) => {
   const [fromIban, setFromIban] = useState("");
   const [toIban, setToIban] = useState("");
@@ -22,30 +34,67 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const [currency, setCurrency] = useState("EUR");
 
   const handleTransaction = () => {
+    const fromAccount = accounts.find((acc) => acc.iban === fromIban);
+    const toAccount = accounts.find((acc) => acc.iban === toIban);
+    const currentDate = new Date();
+
     if (type === "withdraw" || type === "deposit") {
-      const account = accounts.find((acc) => acc.iban === fromIban);
-      if (account) {
+      if (fromAccount) {
         if (type === "withdraw") {
-          if (account.balance >= amount) {
-            updateBalance(fromIban, account.balance - amount);
+          if (fromAccount.balance >= amount) {
+            updateBalance(fromIban, fromAccount.balance - amount);
+            onTransaction({
+              date: currentDate,
+              amount: -amount,
+              balance: fromAccount.balance - amount,
+              iban: fromIban,
+              owner: "John Doe",
+              name: fromAccount.name,
+              transaction_type: type,
+            });
             alert(`€${amount} withdrawn successfully!`);
           } else {
             alert("Insufficient funds.");
           }
         } else if (type === "deposit") {
-          updateBalance(fromIban, account.balance + amount);
+          updateBalance(fromIban, fromAccount.balance + amount);
+          onTransaction({
+            date: currentDate,
+            amount: amount,
+            balance: fromAccount.balance + amount,
+            iban: fromIban,
+            owner: "John Doe",
+            name: fromAccount.name,
+            transaction_type: type,
+          });
           alert(`€${amount} deposited successfully!`);
         }
       } else {
         alert("Account not found.");
       }
     } else if (type === "transfer") {
-      const fromAccount = accounts.find((acc) => acc.iban === fromIban);
-      const toAccount = accounts.find((acc) => acc.iban === toIban);
       if (fromAccount && toAccount) {
         if (fromAccount.balance >= amount) {
           updateBalance(fromIban, fromAccount.balance - amount);
           updateBalance(toIban, toAccount.balance + amount);
+          onTransaction({
+            date: currentDate,
+            amount: -amount,
+            balance: fromAccount.balance - amount,
+            iban: fromIban,
+            owner: "John Doe",
+            name: fromAccount.name,
+            transaction_type: type,
+          });
+          onTransaction({
+            date: currentDate,
+            amount: amount,
+            balance: toAccount.balance + amount,
+            iban: toIban,
+            owner: "John Doe",
+            name: toAccount.name,
+            transaction_type: type,
+          });
           alert(`€${amount} transferred successfully!`);
         } else {
           alert("Insufficient funds.");
@@ -136,7 +185,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             value={amount}
             onChange={handleInputChange}
             className="form-control"
-            placeholder="Enter amount???"
+            placeholder="Enter amount"
           />
         </div>
 

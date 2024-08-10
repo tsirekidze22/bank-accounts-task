@@ -5,16 +5,19 @@ import PaymentForm from "../PaymentForm/PaymentForm";
 interface Account {
   iban: string;
   balance: number;
+  name: string;
 }
 
 interface PaymentSectionProps {
   accounts?: Account[];
   updateBalance?: (iban: string, newBalance: number) => void;
+  onTransaction?: any;
 }
 
 const PaymentSection: React.FC<PaymentSectionProps> = ({
   accounts = [],
   updateBalance = () => {},
+  onTransaction = () => {},
 }) => {
   const [activeTab, setActiveTab] = useState<string>("withdraw");
 
@@ -40,16 +43,19 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
           accounts={accounts}
           updateBalance={updateBalance}
           type="withdraw"
+          onTransaction={onTransaction}
         />
         <PaymentForm
           accounts={accounts}
           updateBalance={updateBalance}
           type="deposit"
+          onTransaction={onTransaction}
         />
         <PaymentForm
           accounts={accounts}
           updateBalance={updateBalance}
           type="transfer"
+          onTransaction={onTransaction}
         />
       </div>
     </section>

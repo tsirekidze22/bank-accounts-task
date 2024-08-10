@@ -25,7 +25,7 @@ const AccountItem = ({ account }: { account: Account }) => {
     setMessage("IBAN copied to clipboard!");
 
     setTimeout(() => {
-      setMessage(""); 
+      setMessage("");
     }, 2000);
   };
 
