@@ -121,6 +121,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     }
   };
 
+  const handleIbansSwitch = () => {
+    setFromIban(toIban);
+    setToIban(fromIban);
+  };
+
   return (
     <section className="payment-form container">
       <h3 className="fs-24">
@@ -141,9 +146,21 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
                 onChange={handleInputChange}
                 className="form-control"
                 placeholder="Enter source IBAN"
+                required
               />
-
-              <label htmlFor="toIban" className="fs-16 mt-3">
+              <div className="d-flex mt-3" style={{ justifyContent: "end" }}>
+                <div
+                  className="p-2 d-flex cursor-pointer align-items-center justify-content-center switch-ibans"
+                  onClick={handleIbansSwitch}
+                >
+                  <img
+                    src="/assets/icons/switch.svg"
+                    alt=""
+                    style={{ width: 20 }}
+                  />
+                </div>
+              </div>
+              <label htmlFor="toIban" className="fs-16">
                 To
               </label>
               <input
@@ -154,6 +171,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
                 onChange={handleInputChange}
                 className="form-control"
                 placeholder="Enter destination IBAN"
+                required
               />
             </>
           ) : (
@@ -182,7 +200,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             type="number"
             id="amount"
             name="amount"
-            value={amount}
+            value={amount === 0 ? "" : amount} // Leave the field empty if amount is 0
             onChange={handleInputChange}
             className="form-control"
             placeholder="Enter amount"
