@@ -26,32 +26,32 @@ const TransactionsList: React.FC<TransactionsListProps> = ({
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 10; // Number of items per page
+  const itemsPerPage = 10;
 
   const handleTabClick = (tabKey: string) => {
-    setActiveTabs((prevActiveTabs) =>
-      prevActiveTabs.includes(tabKey)
+    setActiveTabs((prevActiveTabs) => {
+      const updatedTabs = prevActiveTabs.includes(tabKey)
         ? prevActiveTabs.filter((key) => key !== tabKey)
-        : [...prevActiveTabs, tabKey]
-    );
+        : [...prevActiveTabs, tabKey];
+      return updatedTabs;
+    });
+    setCurrentPage(1);
   };
 
   const filteredTransactions = useMemo(() => {
     let filtered = [...transactions];
 
-    // Filter by selected transaction types
     if (activeTabs.length > 0) {
       filtered = filtered.filter((transaction) =>
         activeTabs.includes(transaction.transaction_type)
       );
     }
 
-    // Filter by date range
     if (startDate && endDate) {
       filtered = filtered.filter(
         (transaction) =>
-          new Date(transaction.date) >= startDate &&
-          new Date(transaction.date) <= endDate
+          new Date(transaction.date) >= (startDate || new Date(0)) &&
+          new Date(transaction.date) <= (endDate || new Date())
       );
     }
 
@@ -114,7 +114,7 @@ const TransactionsList: React.FC<TransactionsListProps> = ({
           </div>
           <Tabs
             tabs={TransactionTabs}
-            activeTab={activeTabs} // Pass the array of active tabs
+            activeTab={activeTabs}
             onTabClick={handleTabClick}
             isBoxShape={true}
           />
@@ -138,7 +138,7 @@ const TransactionsList: React.FC<TransactionsListProps> = ({
               <TransactionItem transaction={transaction} key={index} />
             ))}
           </ul>
-          <div className="pagination mt-4 pt-3">
+          <div className="pagination mt-4">
             <button
               onClick={() => handlePageChange(1)}
               disabled={currentPage === 1}

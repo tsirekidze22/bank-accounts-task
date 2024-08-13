@@ -64,6 +64,16 @@
       background-color: #fff;
     }
   }
+
+  .alert-hidden {
+    opacity: 0;
+    transition: 0.3s ease;
+  }
+
+  .message {
+    border-radius: 4px;
+    height: 40px;
+  }
 }
 
 @media (max-width: 768px) {

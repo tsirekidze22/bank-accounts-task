@@ -33,6 +33,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const [toIban, setToIban] = useState("");
   const [amount, setAmount] = useState<number | string>("");
   const [currency, setCurrency] = useState("EUR");
+  const [showToast, setShowToast] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleTransaction = () => {
     const fromAccount = accounts.find((acc) => acc.iban === fromIban);
@@ -58,9 +60,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
               name: fromAccount.name,
               transaction_type: type,
             });
-            alert(`€${amount} withdrawn successfully!`);
+            setMessage(`€${amount} withdrawn successfully!`);
           } else {
-            alert("Insufficient funds.");
+            setMessage("Insufficient funds.");
           }
         } else if (type === "deposit") {
           updateBalance(fromIban, fromAccount.balance + amount);
@@ -73,10 +75,10 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             name: fromAccount.name,
             transaction_type: type,
           });
-          alert(`€${amount} deposited successfully!`);
+          setMessage(`€${amount} deposited successfully!`);
         }
       } else {
-        alert("Account not found.");
+        setMessage("Account not found.");
       }
     } else if (type === "transfer") {
       if (fromAccount && toAccount) {
@@ -101,18 +103,23 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             name: toAccount.name,
             transaction_type: type,
           });
-          alert(`€${amount} transferred successfully!`);
+          setMessage(`€${amount} transferred successfully!`);
         } else {
-          alert("Insufficient funds.");
+          setMessage("Insufficient funds.");
         }
       } else {
-        alert("One or both accounts not found.");
+        setMessage("One or both accounts not found.");
       }
     }
 
     setAmount(0);
     setFromIban("");
     setToIban("");
+
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +129,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     } else if (name === "toIban") {
       setToIban(value);
     } else if (name === "amount") {
-      // Ensure only numbers are entered
       const numericValue = value.replace(/[^0-9.]/g, "");
       setAmount(numericValue ? parseFloat(numericValue) : "");
     }
@@ -214,13 +220,25 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           />
         </div>
 
-        <button
-          type="button"
-          className="btn btn-primary mt-4"
-          onClick={handleTransaction}
-        >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </button>
+        <div className="d-flex gap-8  mt-4">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleTransaction}
+          >
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </button>
+          {showToast && (
+            <div
+              onTransitionEnd={() => setShowToast(false)}
+              className={`d-flex message bg-secondary p-2 align-items-center gap-2 ${
+                showToast ? "" : "alert-hidden"
+              }`}
+            >
+              <span className="text-white fs-14">{message}</span>
+            </div>
+          )}
+        </div>
       </section>
     </section>
   );
