@@ -7,17 +7,25 @@ interface Tab {
 
 interface TabsProps {
   tabs: Tab[];
-  activeTab: string;
+  activeTab: string | any[];
   onTabClick: (tabKey: string) => void;
+  isBoxShape?: boolean;
 }
 
-const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, onTabClick }) => {
+const Tabs: React.FC<TabsProps> = ({
+  tabs,
+  activeTab,
+  onTabClick,
+  isBoxShape,
+}) => {
   return (
-    <div className="mt-5 mb-3 tabs gap-16 d-flex">
+    <div className="tabs gap-8 d-flex">
       {tabs.map((tab) => (
         <button
           key={tab.key}
-          className={`tab-button ${activeTab === tab.key ? "active" : ""}`}
+          className={`${isBoxShape ? "box-shape" : ""} ${
+            activeTab.includes(tab.key) ? "active" : ""
+          }`}
           onClick={() => onTabClick(tab.key)}
         >
           {tab.label}

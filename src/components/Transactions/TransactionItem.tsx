@@ -1,4 +1,5 @@
 import React from "react";
+import TransactionTypeBadge from "./TransactionTypeBadge";
 
 interface Transaction {
   date: Date;
@@ -35,13 +36,12 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
 
   return (
     <li className="d-flex justify-content-between align-items-center transaction-item">
-      <div>
-        <h3 className="text-dark fs-20 mb-2">{transaction.name}</h3>
+      <div className="transaction-item-left">
+        <h3 className="text-dark mb-2">{transaction.name}</h3>
         <p className="text-secondary fs-16">{formattedDate}</p>
       </div>
-
-      <p>{transaction.transaction_type}</p>
-      <h3 className="fs-24">
+      <TransactionTypeBadge transactionType={transaction.transaction_type} />
+      <h3 className="fs-20 transaction-item-amount" style={{ fontWeight: 500 }}>
         {transaction.amount > 0 ? `+${formattedAmount}` : formattedAmount}€
       </h3>
     </li>

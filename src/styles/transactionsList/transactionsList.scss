@@ -1,16 +1,80 @@
 .transactions {
   width: 100%;
-  border: 1px solid red;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 12px;
+  padding: 24px;
 
   .transaction-item {
+    .account-name {
+      font-size: 20px;
+    }
     &:not(:last-child) {
       border-bottom: 1px solid #ccc;
       margin-bottom: 24px;
       padding-bottom: 24px;
     }
+
+    .deposit {
+      padding: 8px;
+      background-color: rgba($color: #00e817, $alpha: 0.1);
+      color: #069f15;
+      font-size: 14px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .withdraw {
+      padding: 8px;
+      background-color: rgba($color: #ee4410, $alpha: 0.1);
+      color: #ee4410;
+      font-size: 14px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .transfer {
+      padding: 8px;
+      background-color: rgba($color: #eecd10, $alpha: 0.1);
+      color: #ebc90b;
+      font-size: 14px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .transaction-item-left {
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .transaction-item-amount {
+      max-width: 300px;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  column-gap: 8px;
+
+  .current {
+    padding: 0px 12px;
+  }
+}
+
+.horizontal-filters {
+  column-gap: 24px;
+  row-gap: 12px;
+  .date-picker {
+    width: 100px;
+    cursor: pointer;
   }
 }
 
@@ -18,11 +82,10 @@
   position: relative;
   display: inline-block;
   width: 250px;
-  margin-bottom: 1rem;
 
   select {
     width: 100%;
-    padding: 10px 15px;
+    padding: 8px 15px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -30,6 +93,8 @@
     appearance: none;
     cursor: pointer;
     transition: border-color 0.3s;
+    line-height: 20px;
+    height: 42px;
 
     &:focus {
       border-color: #007bff;
@@ -68,6 +133,27 @@
 
     &:last-child {
       border-bottom: 1px solid #ccc;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .transactions {
+    padding: 12px;
+
+    .transaction-item {
+      .account-name {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .horizontal-filters {
+    column-gap: 8px;
+    row-gap: 12px;
+    .date-picker {
+      width: 100px;
+      cursor: pointer;
     }
   }
 }

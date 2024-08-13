@@ -39,7 +39,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
 
   return (
     <section className="container mb-5 pb-5 mt-5">
-      <div className="tabs mt-5 gap-16 d-flex d-md-none">
+      <div className="d-md-none">
         <Tabs
           tabs={TransactionTabs}
           activeTab={activeTab}

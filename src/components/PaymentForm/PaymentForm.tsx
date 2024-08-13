@@ -5,6 +5,7 @@ interface Account {
   balance: number;
   name: string;
 }
+
 interface PaymentFormProps {
   type: string;
   accounts?: Account[];
@@ -30,13 +31,18 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
 }) => {
   const [fromIban, setFromIban] = useState("");
   const [toIban, setToIban] = useState("");
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number | string>("");
   const [currency, setCurrency] = useState("EUR");
 
   const handleTransaction = () => {
     const fromAccount = accounts.find((acc) => acc.iban === fromIban);
     const toAccount = accounts.find((acc) => acc.iban === toIban);
     const currentDate = new Date();
+
+    if (typeof amount !== "number" || amount <= 0 || isNaN(amount)) {
+      alert("Please enter a valid amount.");
+      return;
+    }
 
     if (type === "withdraw" || type === "deposit") {
       if (fromAccount) {
@@ -116,8 +122,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     } else if (name === "toIban") {
       setToIban(value);
     } else if (name === "amount") {
+      // Ensure only numbers are entered
       const numericValue = value.replace(/[^0-9.]/g, "");
-      setAmount(numericValue ? parseFloat(numericValue) : 0);
+      setAmount(numericValue ? parseFloat(numericValue) : "");
     }
   };
 
@@ -197,7 +204,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             Amount ({currency})
           </label>
           <input
-            type="number"
+            type="text"
             id="amount"
             name="amount"
             value={amount === 0 ? "" : amount}
