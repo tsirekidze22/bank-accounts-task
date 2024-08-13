@@ -2,7 +2,11 @@
 
 ## Project Overview
 
-This project is a simple bank account management application built using React and TypeScript. It allows users to perform basic banking operations such as **withdrawal**, **deposit**, and **transfer**. The application is designed to be mobile-responsive, ensuring a smooth user experience across different devices.
+This project is implemented as a **frontend-only application** to demonstrate my skills and expertise in frontend development. As I am applying for a **frontend developer position**, this application handles all functionality within the browser, and it is designed to be fully responsive and user-friendly.
+
+**Note:** Since this is a frontend application, data is not persisted when the page is refreshed, as per the project requirements.
+
+The project is a simple bank account management application built using React and TypeScript. It allows users to perform basic banking operations such as **withdrawal**, **deposit**, and **transfer**. The application is designed to be mobile-responsive, ensuring a smooth user experience across different devices.
 
 ## Features
 
