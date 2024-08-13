@@ -28,6 +28,12 @@ export const AccountsArr = [
   },
 ];
 
+export const AccountsTabs = [
+  { key: "all", label: "All Accounts" },
+  { key: "my accounts", label: "My Accounts" },
+  { key: "other", label: "Other" },
+];
+
 export const TransactionTabs = [
   { key: "withdraw", label: "Withdraw" },
   { key: "deposit", label: "Deposit" },

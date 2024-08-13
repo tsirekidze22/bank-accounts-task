@@ -6,7 +6,7 @@ interface Account {
   name: string;
 }
 interface PaymentFormProps {
-  type: "withdraw" | "deposit" | "transfer";
+  type: string;
   accounts?: Account[];
   updateBalance?: (iban: string, newBalance: number) => void;
   onTransaction?: (transaction: Transaction) => void;
@@ -200,7 +200,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
             type="number"
             id="amount"
             name="amount"
-            value={amount === 0 ? "" : amount} // Leave the field empty if amount is 0
+            value={amount === 0 ? "" : amount}
             onChange={handleInputChange}
             className="form-control"
             placeholder="Enter amount"

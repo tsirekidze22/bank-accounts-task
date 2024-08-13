@@ -120,6 +120,28 @@ code {
   align-items: center;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .d-md-none {
+    display: none;
+  }
+
+  .d-md-block {
+    display: block;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -144,6 +166,7 @@ code {
   max-width: 1320px;
   width: 100%;
   margin: 0 auto;
+  padding: 0px 12px;
 }
 
 .divider {

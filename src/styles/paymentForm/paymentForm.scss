@@ -3,8 +3,8 @@
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid red;
   width: 32%;
+  border: 1px solid #ccc;
 
   h3 {
     color: #343a40;
@@ -53,7 +53,6 @@
   }
 
   .switch-ibans {
-    border: 1px solid red;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 40px;
@@ -64,5 +63,11 @@
     &:hover {
       background-color: #fff;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-form {
+    width: 100%;
   }
 }

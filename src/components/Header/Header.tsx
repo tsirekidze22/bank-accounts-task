@@ -6,15 +6,9 @@ const Header = () => {
     <header className="header d-flex align-items-center">
       <div className="container d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center gap-24">
-          <Link to="/">InternetBanking</Link>
-
-          <nav className="nav d-flex align-items-center">
-            <ul className="nav-list d-flex align-items-center gap-16">
-              <li className="list-item">
-                <Link to="/">Home</Link>
-              </li>
-            </ul>
-          </nav>
+          <Link to="/" className="fs-24 logo">
+            Internet<span>Banking</span>
+          </Link>
         </div>
         <div className="d-flex align-items-center gap-8">
           <img
